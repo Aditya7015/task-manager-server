@@ -25,10 +25,21 @@ app.use(morgan('dev'));
 // Serve uploads from server/uploads
 app.use('/uploads', express.static(path.resolve(__dirname, '../../uploads')));
 
-app.get('/health', (_req,res)=> res.json({ ok:true }));
+app.get('/health', (_req, res) => res.json({ ok: true }));
+
+// ✅ Root route for Render (API-style JSON response)
+app.get('/', (_req, res) => {
+  res.json({
+    status: 'success',
+    message: '🚀 Task Manager API is running successfully!',
+    version: '1.0.0',
+    timestamp: new Date().toISOString()
+  });
+});
+
 app.use('/api/v1', v1);
 
-// 404 + error handler
-app.use((req,res) => res.status(404).json({ message: 'Not found' }));
+// 404 handler
+app.use((req, res) => res.status(404).json({ message: 'Not found' }));
 
 export default app;
