@@ -1,0 +1,10 @@
+import { Router } from 'express';
+import { requireAuth } from '../middleware/auth.js';
+import { myProjects, create, addMember, activity, board } from '../controllers/projects.js';
+export const projectRoutes = Router();
+projectRoutes.use(requireAuth);
+projectRoutes.get('/', myProjects);
+projectRoutes.post('/', create);
+projectRoutes.post('/members', addMember);
+projectRoutes.get('/:id/activity', activity);
+projectRoutes.get('/:id/board', board);

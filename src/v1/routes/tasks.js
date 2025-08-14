@@ -1,0 +1,11 @@
+import { Router } from 'express';
+import { requireAuth } from '../middleware/auth.js';
+import { create, update, remove, move, comments, addComment } from '../controllers/tasks.js';
+export const taskRoutes = Router();
+taskRoutes.use(requireAuth);
+taskRoutes.post('/', create);
+taskRoutes.patch('/:id', update);
+taskRoutes.delete('/:id', remove);
+taskRoutes.post('/:id/move', move);
+taskRoutes.get('/:id/comments', comments);
+taskRoutes.post('/:id/comments', addComment);

@@ -1,0 +1,16 @@
+import { Router } from 'express';
+import { authRoutes } from './routes/auth.js';
+import { projectRoutes } from './routes/projects.js';
+import { taskRoutes } from './routes/tasks.js';
+import { adminRoutes } from './routes/admin.js';
+import { passwordRoutes } from './routes/password.js';
+import { inviteRoutes } from './routes/invites.js';
+import { attachmentRoutes } from './routes/attachments.js';
+export const router = Router();
+router.use('/auth', authRoutes);
+router.use('/auth/password', passwordRoutes);
+router.use('/projects', projectRoutes);
+router.use('/tasks', taskRoutes);
+router.use('/invites', inviteRoutes);
+router.use('/attachments', attachmentRoutes);
+router.use('/admin', adminRoutes);
